@@ -1,0 +1,15 @@
+discord command promote <member> [<text>]:
+    prefixes: !
+    trigger:
+        if arg-2 is not set:
+            if event-member has discord permission administrator:
+                retrieve last 1 messages from event-channel and store them in {_msgs::*}
+                reply with message "%mention tag of arg-1%"
+                make embed:
+                    set author of the embed to "Promoted"
+                    set description of embed to "**User:** %mention tag of arg-1%%nl%**Status:** Accepted%nl%**Reason:** %arg-2%"
+                    set thumbnail of embed to "https://cdn.discordapp.com/attachments/1175500777859596288/1187520261105397760/rite2.png?ex=65a069ed&is=658df4ed&hm=ac0cc584a27e4c2d6e57c593eb7746c6d13a6d9189d4d1e01a3e130f029bac15&"
+                    set timestamp of embed to now
+                    set embed color of the embed to light green
+                reply with last made embed
+                purge {_msgs::*}
